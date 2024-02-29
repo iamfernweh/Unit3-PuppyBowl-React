@@ -1,7 +1,7 @@
+import { Route, Routes } from 'react-router';
 import './App.css';
 import AllPlayers from './components/AllPlayers';
 import NavBar from './components/NavBar';
-import NewPlayerForm from './components/NewPlayerForm';
 import SinglePlayer from './components/SinglePlayer';
 
 function App() {
@@ -10,9 +10,11 @@ function App() {
     <>
       <h1>App</h1>
       <NavBar />
-      <AllPlayers />
-      <NewPlayerForm />
-      <SinglePlayer />
+      <Routes>
+        {/* path: what is added to baseUrl */}
+        <Route path='/' element={<AllPlayers />} />
+        <Route path='/players/:id' element={<SinglePlayer />} />
+      </Routes>
     </>
   );
 }
