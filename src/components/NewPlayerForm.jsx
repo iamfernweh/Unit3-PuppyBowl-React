@@ -22,7 +22,7 @@ export default function NewPlayerForm() {
                     />
                 </label>
                 <label>
-                    Image URL:
+                    Image Url:
                     <input
                         type="text"
                         name="player-image"

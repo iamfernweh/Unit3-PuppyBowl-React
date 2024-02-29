@@ -10,5 +10,10 @@ export const playersApi = createApi({
     getPlayers: builder.query({
       query: () => 'players',
     }),
+    getSinglePlayer: builder.query({
+      query: (id) => `players/${id}`,
+    }),
   }),
 });
+
+export const { useGetPlayersQuery, useGetSinglePlayerQuery } = playersApi;
