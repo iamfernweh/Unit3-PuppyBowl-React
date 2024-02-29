@@ -1,11 +1,13 @@
 import NewPlayerForm from "./NewPlayerForm";
-import { useGetPlayersQuery } from "../API/playersSlice";
+import { useGetPlayersQuery, useDeletePlayerMutation } from "../API/playersSlice";
 import { useNavigate } from "react-router";
 
 export default function AllPlayers() {
 
-    const { data, isLoading } = useGetPlayersQuery();
+    const { data, isLoading, refetch } = useGetPlayersQuery();
     const navigate = useNavigate();
+
+    const [deletePlayer, result] = useDeletePlayerMutation();
 
     return (
         <>
@@ -19,7 +21,14 @@ export default function AllPlayers() {
                     <img src={player.imageUrl} alt="player image" />
                     <br />
                     <button onClick={() => navigate(`/players/${player.id}`)}>View Details</button>
-                    <button>Remove</button>
+                    <button
+                        onClick={async () => {
+                            await deletePlayer(player.id);
+                            refetch();
+                        }}
+                    >
+                        Remove
+                    </button>
                 </div>
             ))
             ) : (

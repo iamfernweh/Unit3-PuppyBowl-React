@@ -1,15 +1,35 @@
+import { useState, refetch } from "react";
+import { useGetPlayersQuery, useCreatePlayerMutation } from "../API/playersSlice";
+
 export default function NewPlayerForm() {
+    const [name, setName] = useState('');
+    const [breed, setBreed] = useState('');
+    const [imageUrl, setImageUrl] = useState('');
+
+    const [createPlayer, result] = useCreatePlayerMutation();
+    const { data, isLoading } = useGetPlayersQuery();
+
+
+    function handlesSubmit(e) {
+        e.preventDefault();
+        createPlayer({ name, breed, imageUrl });
+        refetch();
+    }
+
+
     return (
         <>
             <h3>Add a new player</h3>
-            <form>
+            <form onSubmit={handlesSubmit}>
                 <label>
                     Name:
                     <input
                         type="text"
                         name="player-name"
                         id="player-name"
-                        placeholder="Lucky"
+                        placeholder="Waffles"
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
                     />
                 </label>
                 <label>
@@ -18,7 +38,9 @@ export default function NewPlayerForm() {
                         type="text"
                         name="player-breed"
                         id="player-breed"
-                        placeholder="corgi"
+                        placeholder="Corgi"
+                        value={breed}
+                        onChange={(e) => setBreed(e.target.value)}
                     />
                 </label>
                 <label>
@@ -28,9 +50,11 @@ export default function NewPlayerForm() {
                         name="player-image"
                         id="player-image"
                         placeholder="image link"
+                        value={imageUrl}
+                        onChange={(e) => setImageUrl(e.target.value)}
                     />
                 </label>
-                <button>Submit</button>
+                <button type="submit">Submit</button>
             </form>
         </>
     );
