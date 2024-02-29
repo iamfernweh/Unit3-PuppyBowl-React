@@ -7,7 +7,8 @@ export default function NewPlayerForm() {
     const [imageUrl, setImageUrl] = useState('');
 
     const [createPlayer, result] = useCreatePlayerMutation();
-    const { data, isLoading } = useGetPlayersQuery();
+    const { refetch } = useGetPlayersQuery();
+
 
 
     function handlesSubmit(e) {

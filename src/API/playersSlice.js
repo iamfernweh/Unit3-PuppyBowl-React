@@ -7,13 +7,14 @@ export const playersApi = createApi({
   reducerPath: 'playersApi',
   baseQuery: fetchBaseQuery({ baseUrl }),
   endpoints: (builder) => ({
+    // GET --> builder.query
     getPlayers: builder.query({
       query: () => 'players',
     }),
     getSinglePlayer: builder.query({
       query: (id) => `players/${id}`,
     }),
-    //DELETE,POST,PUT,PATCH builder.mutation
+    // DELETE, POST, PUT, PATCH --> builder.mutation
     deletePlayer: builder.mutation({
       query: (id) => ({
         url: `players/${id}`,
@@ -21,7 +22,7 @@ export const playersApi = createApi({
       }),
     }),
     createPlayer: builder.mutation({
-      query: () => ({
+      query: (newPlayerData) => ({
         url: 'players',
         method: 'POST',
         body: newPlayerData,
@@ -30,6 +31,7 @@ export const playersApi = createApi({
   }),
 });
 
+// "use" + endpoint name + "query" or "mutation"
 export const {
   useGetPlayersQuery,
   useGetSinglePlayerQuery,
