@@ -18,7 +18,7 @@ export default function NewPlayerForm() {
                         type="text"
                         name="player-breed"
                         id="player-breed"
-                        placeholder="dalmatian"
+                        placeholder="corgi"
                     />
                 </label>
                 <label>
@@ -27,7 +27,7 @@ export default function NewPlayerForm() {
                         type="text"
                         name="player-image"
                         id="player-image"
-                        placeholder="https://placedog.net/640/480?random"
+                        placeholder="image link"
                     />
                 </label>
                 <button>Submit</button>
